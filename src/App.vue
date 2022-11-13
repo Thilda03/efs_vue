@@ -44,7 +44,7 @@
             ]
         }),
         mounted() {
-            apiService.getCustomerList().then(response => {
+            apiService.getCustomerList().then(_response => {
               this.authenticated = true;
             }).catch(error => {
                 if (error.response.status === 401) {
