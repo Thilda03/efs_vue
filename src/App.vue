@@ -1,6 +1,7 @@
 <template>
     <ul class="nav justify-content-end">
         <div class="EFS">Eagle Financial Services</div>
+      <br> <br> <br> <br> <br>
         <li class="nav-item active">
             <router-link to="/">Home</router-link> |
         </li>
@@ -8,11 +9,13 @@
             <router-link :to="{name: 'CustomerList'}">Customers</router-link>|
         </li>
         <li class="nav-item">
-            <router-link :to="{name: 'InvestmentList'}">Investments</router-link>  
-        </li>|
-         <li class="nav-item">
-            <router-link :to="{name: 'StockList'}">Stocks</router-link>  
-        </li>|
+            <router-link :to="{name: 'InvestmentList'}">Investments</router-link>|
+        </li>
+
+       <li class="nav-item">
+            <router-link :to="{name: 'StockList'}">Stocks</router-link>
+        </li>
+
         <li class="nav-item" v-if="!authenticated" @click="login" >
             | <router-link :to="{name: 'Auth'}">Log in</router-link>
         </li>
@@ -40,12 +43,11 @@
                 { title: 'Home', url:"/"},
                 { title: 'Customers', url:"/customer-list" },
                 { title: 'Investments', url:"/investment-list" },
-                { title: 'Stocks', url:"/stock-list" },
             ]
         }),
         mounted() {
-            apiService.getCustomerList().then(_response => {
-              this.authenticated = true;
+            apiService.getCustomerList().then(response => {
+                this.authenticated = true;
             }).catch(error => {
                 if (error.response.status === 401) {
                     localStorage.removeItem('isAuthenticates');
@@ -65,6 +67,15 @@
                 // router.push('/');
                 window.location = "/"
             },
+           viewCustomers() {
+        router.push('/customer-list');
+      },
+      viewInvestments() {
+        router.push('/investment-list');
+      },
+       viewStocks() {
+        router.push('/stock-list');
+      },
             login() {
                 router.push("/auth");
             },
@@ -84,7 +95,7 @@
     #nav {
         padding: 30px;
         background-color: cadetblue;
-        
+
         a {
             font-weight: bold;
             color: #2c3e50;
@@ -95,11 +106,15 @@
     }
     .nav {
         padding: 1em;
-        background-color: cadetblue;
-        
+        background-color: darkseagreen;
+          margin-top: 50px;
+
+
         li {
             font-weight: bold;
-            color: #2c3e50;
+            color: papayawhip;
+           margin-top: 50px;
+
         }
 
 
@@ -108,16 +123,23 @@
             padding: .5em;
 
 
+
+
             &.router-link-exact-active {
-                color: #42b983;
+                color: whitesmoke;
             }
         }
 
 
         .EFS{
-            margin-right: 33em;
+            margin-right: 20em;
+          margin-top: 50px;
+          color:whitesmoke;
+          font-size: x-large;
         }
     }
 
 
 </style>
+
+
